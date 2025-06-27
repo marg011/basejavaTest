@@ -1,13 +1,20 @@
+import java.util.Arrays;
+
 /**
  * Array based storage for Resumes
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
+    int pointer = 0;
 
     void clear() {
+        Arrays.fill(storage, null);
+        pointer = 0;
     }
 
     void save(Resume r) {
+        storage[pointer] = r;
+        pointer++;
     }
 
     Resume get(String uuid) {
@@ -25,6 +32,7 @@ public class ArrayStorage {
     }
 
     int size() {
-        return 0;
+
+        return pointer;
     }
 }
