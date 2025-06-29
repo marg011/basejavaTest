@@ -5,56 +5,49 @@ import java.util.Arrays;
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-    int pointer = 0;
+    int arraySize = 0;
 
     void clear() {
-        Arrays.fill(storage, null);
-        pointer = 0;
+        Arrays.fill(storage, 0, arraySize, null);
+        arraySize = 0;
     }
 
     void save(Resume r) {
-        storage[pointer] = r;
-        pointer++;
+        storage[arraySize] = r;
+        arraySize++;
     }
 
     Resume get(String uuid) {
-        if (pointer > 0) {
-            Resume resume = new Resume();
-            resume.setUuid(uuid);
-            int foundIndex = Arrays.binarySearch(storage, 0, pointer - 1, resume);
-            if (foundIndex >= 0) {
-                return storage[foundIndex];
+        if (arraySize > 0) {
+            for (int i = 0; i < arraySize; i++) {
+                if (storage[i].getUuid().equals(uuid)) {
+                    return storage[i];
+                }
             }
-            return null;
         }
         return null;
     }
 
     void delete(String uuid) {
-        if (pointer > 0) {
-            Resume resume = new Resume();
-            resume.setUuid(uuid);
-            int foundIndex = Arrays.binarySearch(storage, 0, pointer - 1, resume);
-            if (foundIndex >= 0) {
-                System.arraycopy(storage, foundIndex + 1, storage, foundIndex, pointer - foundIndex - 1);
-                pointer--;
+        if (arraySize > 0) {
+            for (int i = 0; i < arraySize; i++) {
+                if (storage[i].getUuid().equals(uuid)) {
+                    System.arraycopy(storage, i + 1, storage, i, arraySize - i);
+                    arraySize--;
+                    break;
+                }
             }
         }
-
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        if (pointer > 0) {
-            return Arrays.copyOf(storage, pointer);
-        }
-        return new Resume[0];
+        return Arrays.copyOf(storage, arraySize);
     }
 
     int size() {
-
-        return pointer;
+        return arraySize;
     }
 }
