@@ -9,7 +9,6 @@ public class ArrayStorage {
     int size = 0;
 
     private int findResumeIndex(String uuid) {
-
         return IntStream.range(0, size).filter(index -> storage[index].getUuid().equals(uuid))
                 .findFirst()
                 .orElse(-1);
