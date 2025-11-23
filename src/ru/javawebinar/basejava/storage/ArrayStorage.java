@@ -1,8 +1,12 @@
+package ru.javawebinar.basejava.storage;
+
+import ru.javawebinar.basejava.model.Resume;
+
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
- * Array based storage for Resumes
+ * Array based ru.javawebinar.basejava.storage.model.storage for Resumes
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
@@ -24,7 +28,7 @@ public class ArrayStorage {
         if (index != -1) {
             storage[index] = r;
         } else {
-            System.out.println("No resume with id " + r.getUuid() + " in storage");
+            System.out.println("No resume with id " + r.getUuid() + " in ru.javawebinar.basejava.storage.model.storage");
         }
     }
 
@@ -33,7 +37,7 @@ public class ArrayStorage {
                 .noneMatch(resume -> resume.getUuid().equals(r.getUuid()) && size <= storage.length)) {
             storage[size++] = r;
         } else {
-            System.out.println("The resume" + r.getUuid() + "is already in storage or storage is full");
+            System.out.println("The resume" + r.getUuid() + "is already in ru.javawebinar.basejava.storage.model.storage or ru.javawebinar.basejava.storage.model.storage is full");
         }
     }
 
@@ -42,7 +46,7 @@ public class ArrayStorage {
         if (index != -1) {
             return storage[index];
         }
-        System.out.println("No resume with id " + uuid + " in storage");
+        System.out.println("No resume with id " + uuid + " in ru.javawebinar.basejava.storage.model.storage");
         return null;
     }
 
@@ -57,18 +61,18 @@ public class ArrayStorage {
                 storage[index] = null;
             }
         } else {
-            System.out.println("No resume with id " + uuid + " in storage");
+            System.out.println("No resume with id " + uuid + " in ru.javawebinar.basejava.storage.model.storage");
         }
     }
 
     /**
-     * @return array, contains only Resumes in storage (without null)
+     * @return array, contains only Resumes in ru.javawebinar.basejava.storage.model.storage (without null)
      */
     public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
     }
 
-    int size() {
+    public int size() {
         return size;
     }
 }
