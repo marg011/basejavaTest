@@ -23,7 +23,7 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        if (isPresent(r) && size <= storage.length) {
+        if (isPresent(r) && size <= STORAGE_LIMIT) {
             storage[size++] = r;
         } else {
             System.out.println("The resume with id = " + r.getUuid() + " is already in storage or storage is full");
