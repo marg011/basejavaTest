@@ -54,6 +54,7 @@ public class ArrayStorage {
         Arrays.fill(storage, 0, size, null);
         size = 0;
     }
+
     /**
      * @return array, contains only Resumes in storage (without null)
      */
